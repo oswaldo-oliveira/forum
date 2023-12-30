@@ -1,0 +1,20 @@
+import { Module } from '@nestjs/common'
+import { CreateAccountController } from './controller/create-account.controller'
+import { AuthenticateController } from './controller/authenticate.controller'
+import { CreateQuestionController } from './controller/create-question.controller'
+import { FetchRecentQuestionsController } from './controller/fetch-recent-questions.controller'
+import { DatabaseModule } from '../database/database.module'
+import { CreateQuestionService } from '@/domain/forum/application/services/create-question'
+import { FetchRecentQuestionsService } from '@/domain/forum/application/services/fetch-recent-questions'
+
+@Module({
+  imports: [DatabaseModule],
+  controllers: [
+    CreateAccountController,
+    AuthenticateController,
+    CreateQuestionController,
+    FetchRecentQuestionsController,
+  ],
+  providers: [CreateQuestionService, FetchRecentQuestionsService],
+})
+export class HttpModule {}
