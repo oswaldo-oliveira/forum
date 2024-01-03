@@ -6,15 +6,23 @@ import { FetchRecentQuestionsController } from './controller/fetch-recent-questi
 import { DatabaseModule } from '../database/database.module'
 import { CreateQuestionService } from '@/domain/forum/application/services/create-question'
 import { FetchRecentQuestionsService } from '@/domain/forum/application/services/fetch-recent-questions'
+import { RegisterStudentService } from '@/domain/forum/application/services/register-student'
+import { AuthenticateStudentService } from '@/domain/forum/application/services/authenticate-student'
+import { CryptographyModule } from '../cryptography/cryptography.module'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CryptographyModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
     CreateQuestionController,
     FetchRecentQuestionsController,
   ],
-  providers: [CreateQuestionService, FetchRecentQuestionsService],
+  providers: [
+    CreateQuestionService,
+    FetchRecentQuestionsService,
+    RegisterStudentService,
+    AuthenticateStudentService,
+  ],
 })
 export class HttpModule {}
