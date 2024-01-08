@@ -7,13 +7,14 @@ import { QuestionAttachmentsRepository } from '../repositories/question-attachme
 import { QuestionAttachmentList } from '../../enterprise/entities/question-attachment-list'
 import { QuestionAttachment } from '../../enterprise/entities/question-attachment'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Injectable } from '@nestjs/common'
 
 interface EditQuestionServiceRequest {
   authorId: string
   questionId: string
   title: string
   content: string
-  attachmentsIds: string[]
+  attachmentIds: string[]
 }
 
 type EditQuestionServiceResponse = Either<
@@ -23,6 +24,7 @@ type EditQuestionServiceResponse = Either<
   }
 >
 
+@Injectable()
 export class EditQuestionService {
   constructor(
     private questionRepository: QuestionsRepository,
@@ -34,7 +36,7 @@ export class EditQuestionService {
     authorId,
     title,
     content,
-    attachmentsIds,
+    attachmentIds,
   }: EditQuestionServiceRequest): Promise<EditQuestionServiceResponse> {
     const question = await this.questionRepository.findById(questionId)
 
@@ -53,7 +55,7 @@ export class EditQuestionService {
       currentQuestionAttachments,
     )
 
-    const questionAttachments = attachmentsIds.map((attachmentId) => {
+    const questionAttachments = attachmentIds.map((attachmentId) => {
       return QuestionAttachment.create({
         attachmentId: new UniqueEntityID(attachmentId),
         questionId: question.id,
