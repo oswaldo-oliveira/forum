@@ -52,7 +52,7 @@ describe('Comment on question (E2E)', () => {
 
     const commentOnDatabase = await prisma.comment.findFirst({
       where: {
-        content: 'New answer',
+        content: 'New comment',
       },
     })
 
