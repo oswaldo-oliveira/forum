@@ -13,6 +13,8 @@ import { GetQuestionBySlugController } from './controller/get-question-by-slug.c
 import { GetQuestionBySlugService } from '@/domain/forum/application/services/get-question-by-slug'
 import { EditQuestionController } from './controller/edit-question.controller'
 import { EditQuestionService } from '@/domain/forum/application/services/edit-question'
+import { DeleteQuestionController } from './controller/delete-question.controller'
+import { DeleteQuestionService } from '@/domain/forum/application/services/delete-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -23,6 +25,7 @@ import { EditQuestionService } from '@/domain/forum/application/services/edit-qu
     FetchRecentQuestionsController,
     GetQuestionBySlugController,
     EditQuestionController,
+    DeleteQuestionController,
   ],
   providers: [
     CreateQuestionService,
@@ -31,6 +34,7 @@ import { EditQuestionService } from '@/domain/forum/application/services/edit-qu
     GetQuestionBySlugService,
     AuthenticateStudentService,
     EditQuestionService,
+    DeleteQuestionService,
   ],
 })
 export class HttpModule {}
