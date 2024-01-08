@@ -25,6 +25,8 @@ import { FetchQuestionAnswersController } from './controller/fetch-question-answ
 import { FetchQuestionAnswersService } from '@/domain/forum/application/services/fetch-question-answers'
 import { ChooseQuestionBestAnswerController } from './controller/choose-question-best-answer.controller'
 import { ChooseQuestionBestAnswerService } from '@/domain/forum/application/services/choose-question-best-answer'
+import { CommentOnQuestionService } from '@/domain/forum/application/services/comment-on-question'
+import { commentOnQuestionController } from './controller/comment-on-question.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -41,6 +43,7 @@ import { ChooseQuestionBestAnswerService } from '@/domain/forum/application/serv
     DeleteAnswerController,
     FetchQuestionAnswersController,
     ChooseQuestionBestAnswerController,
+    commentOnQuestionController,
   ],
   providers: [
     CreateQuestionService,
@@ -55,6 +58,7 @@ import { ChooseQuestionBestAnswerService } from '@/domain/forum/application/serv
     DeleteAnswerService,
     FetchQuestionAnswersService,
     ChooseQuestionBestAnswerService,
+    CommentOnQuestionService,
   ],
 })
 export class HttpModule {}
