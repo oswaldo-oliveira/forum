@@ -58,12 +58,12 @@ describe('Edit answer (E2E)', () => {
 
     expect(response.statusCode).toBe(204)
 
-    const questionOnDatabase = await prisma.answer.findFirst({
+    const answerOnDatabase = await prisma.answer.findFirst({
       where: {
         content: 'New answer',
       },
     })
 
-    expect(questionOnDatabase).toBeTruthy()
+    expect(answerOnDatabase).toBeTruthy()
   })
 })
