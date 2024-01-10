@@ -49,7 +49,7 @@ describe('Edit question', () => {
       questionId: newQuestion.id.toValue(),
       title: 'Pergunta teste',
       content: 'Conteúdo teste',
-      attachmentsIds: ['1', '3'],
+      attachmentIds: ['1', '3'],
     })
 
     expect(
@@ -83,7 +83,7 @@ describe('Edit question', () => {
       questionId: newQuestion.id.toValue(),
       title: 'Pergunta teste',
       content: 'Conteúdo teste',
-      attachmentsIds: [],
+      attachmentIds: [],
     })
 
     expect(result.isLeft()).toBe(true)
