@@ -37,9 +37,12 @@ import { FetchQuestionCommentsController } from './controller/fetch-question-com
 import { FetchQuestionCommentsService } from '@/domain/forum/application/services/fetch-question-comments'
 import { FetchAnswerCommentsService } from '@/domain/forum/application/services/fetch-answer-comments'
 import { FetchAnswerCommentsController } from './controller/fetch-answer-comments.controller'
+import { UploadAttachmentController } from './controller/upload-attachment.controller'
+import { StorageModule } from '../storage/storage.module'
+import { UploadAndCreateAttachmentService } from '@/domain/forum/application/services/upload_and_create_attachment'
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, StorageModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
@@ -59,6 +62,7 @@ import { FetchAnswerCommentsController } from './controller/fetch-answer-comment
     DeleteAnswerCommentController,
     FetchQuestionCommentsController,
     FetchAnswerCommentsController,
+    UploadAttachmentController,
   ],
   providers: [
     CreateQuestionService,
@@ -79,6 +83,7 @@ import { FetchAnswerCommentsController } from './controller/fetch-answer-comment
     DeleteAnswerCommentService,
     FetchQuestionCommentsService,
     FetchAnswerCommentsService,
+    UploadAndCreateAttachmentService,
   ],
 })
 export class HttpModule {}
