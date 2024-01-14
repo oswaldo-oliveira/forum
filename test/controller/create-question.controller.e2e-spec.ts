@@ -59,7 +59,7 @@ describe('Create question (E2E)', () => {
 
     const attachmentsOnDatabase = await prisma.attachment.findMany({
       where: {
-        questionId: questionOnDatabase?.id.toString(),
+        questionId: questionOnDatabase?.id,
       },
     })
 

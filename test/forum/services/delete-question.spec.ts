@@ -2,7 +2,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { DeleteQuestionService } from '@/domain/forum/application/services/delete-question'
 import { makeQuestion } from 'test/forum/factories/make-question'
-import { makeQuestionAttachment } from 'test/forum/factories/make-question-attachements'
+import { makeQuestionAttachment } from 'test/forum/factories/make-question-attachments'
 import { InMemoryQuestionAttachmentsRepository } from 'test/forum/repositories/in-memory-question-attachments-repository'
 import { InMemoryQuestionsRepository } from 'test/forum/repositories/in-memory-questions-repository'
 
