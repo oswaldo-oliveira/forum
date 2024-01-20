@@ -8,8 +8,10 @@ import { makeAnswer } from 'test/forum/factories/make-answer'
 import { makeQuestion } from 'test/forum/factories/make-question'
 import { InMemoryAnswerAttachmentsRepository } from 'test/forum/repositories/in-memory-answer-attachments-repository'
 import { InMemoryAnswersRepository } from 'test/forum/repositories/in-memory-answers-repository'
+import { InMemoryAttachmentsRepository } from 'test/forum/repositories/in-memory-attachments-repository'
 import { InMemoryQuestionAttachmentsRepository } from 'test/forum/repositories/in-memory-question-attachments-repository'
 import { InMemoryQuestionsRepository } from 'test/forum/repositories/in-memory-questions-repository'
+import { InMemoryStudentsRepository } from 'test/forum/repositories/in-memory-students-repository'
 import { InMemoryNotificationsRepository } from 'test/notification/repositories/in-memory-notification-repository'
 import { waitFor } from 'test/utils/wait-for'
 import { MockInstance } from 'vitest'
@@ -19,6 +21,8 @@ let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository
+let inMemoryStudentRepository: InMemoryStudentsRepository
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository
 let sut: SendNotificationService
 
 let sendNotificationExecuteSpy: MockInstance<
@@ -30,8 +34,12 @@ describe('On answer created', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentsRepository =
       new InMemoryQuestionAttachmentsRepository()
+    inMemoryStudentRepository = new InMemoryStudentsRepository()
+    inMemoryAttachmentsRepository = new InMemoryAttachmentsRepository()
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentRepository,
     )
     inMemoryAnswerAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository()
