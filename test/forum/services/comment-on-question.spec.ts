@@ -3,21 +3,30 @@ import { makeQuestion } from 'test/forum/factories/make-question'
 import { InMemoryQuestionAttachmentsRepository } from 'test/forum/repositories/in-memory-question-attachments-repository'
 import { InMemoryQuestionCommentsRepository } from 'test/forum/repositories/in-memory-question-comments-repository'
 import { InMemoryQuestionsRepository } from 'test/forum/repositories/in-memory-questions-repository'
+import { InMemoryAttachmentsRepository } from '../repositories/in-memory-attachments-repository'
+import { InMemoryStudentsRepository } from '../repositories/in-memory-students-repository'
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository
+let inMemoryStudentsRepository: InMemoryStudentsRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: CommentOnQuestionService
 
 describe('Comment on question', () => {
   beforeEach(() => {
+    inMemoryAttachmentsRepository = new InMemoryAttachmentsRepository()
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
     inMemoryQuestionAttachmentsRepository =
       new InMemoryQuestionAttachmentsRepository()
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository,
     )
-    inMemoryQuestionCommentsRepository =
-      new InMemoryQuestionCommentsRepository()
+    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository(
+      inMemoryStudentsRepository,
+    )
     sut = new CommentOnQuestionService(
       inMemoryQuestionsRepository,
       inMemoryQuestionCommentsRepository,

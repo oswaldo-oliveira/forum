@@ -3,13 +3,18 @@ import { NotAllowedError } from '@/core/errors/not-allowed-error'
 import { DeleteAnswerCommentService } from '@/domain/forum/application/services/delete-answer-comment'
 import { makeAnswerComment } from 'test/forum/factories/make-answer-comment'
 import { InMemoryAnswerCommentsRepository } from 'test/forum/repositories/in-memory-answer-comments-repository'
+import { InMemoryStudentsRepository } from '../repositories/in-memory-students-repository'
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
+let inMemoryStudentsRepository: InMemoryStudentsRepository
 let sut: DeleteAnswerCommentService
 
 describe('Delete answer comment', () => {
   beforeEach(() => {
-    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
+    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(
+      inMemoryStudentsRepository,
+    )
     sut = new DeleteAnswerCommentService(inMemoryAnswerCommentsRepository)
   })
 

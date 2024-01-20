@@ -7,8 +7,12 @@ import { InMemoryAnswerAttachmentsRepository } from 'test/forum/repositories/in-
 import { InMemoryAnswersRepository } from 'test/forum/repositories/in-memory-answers-repository'
 import { InMemoryQuestionAttachmentsRepository } from 'test/forum/repositories/in-memory-question-attachments-repository'
 import { InMemoryQuestionsRepository } from 'test/forum/repositories/in-memory-questions-repository'
+import { InMemoryStudentsRepository } from '../repositories/in-memory-students-repository'
+import { InMemoryAttachmentsRepository } from '../repositories/in-memory-attachments-repository'
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository
+let inMemoryStudentsRepository: InMemoryStudentsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
@@ -16,6 +20,8 @@ let sut: ChooseQuestionBestAnswerService
 
 describe('Choose question best answer', () => {
   beforeEach(() => {
+    inMemoryAttachmentsRepository = new InMemoryAttachmentsRepository()
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
     inMemoryAnswerAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository()
     inMemoryQuestionAttachmentsRepository =
@@ -25,6 +31,8 @@ describe('Choose question best answer', () => {
     )
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentsRepository,
     )
     sut = new ChooseQuestionBestAnswerService(
       inMemoryAnswersRepository,
